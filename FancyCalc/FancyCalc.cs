@@ -11,14 +11,14 @@ namespace FancyCalc
 
         public double Add(int a, int b)
         {
-            throw new NotImplementedException();
+          //  throw new NotImplementedException();
             return a + b;
         }
 
 
         public double Subtract(int a, int b)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
             return a - b;
         }
 
