@@ -29,9 +29,19 @@ namespace FancyCalc
         }
 
         //generic calc method. usage: "10 + 20"  => result 30
-        public double Culculate(string expression)
+        static double? Culculate(string expression)
         {
-            double[] a = new double[expression.Length];
+
+            if (expression == "")
+            {
+
+                return null;
+            }
+            else
+            {
+                expression = expression.Replace("  ", string.Empty);
+                expression = expression.Trim().Replace(" ", string.Empty);
+                double[] a = new double[expression.Length];
             double[] b = new double[expression.Length];
             char[] ax = new char[expression.Length];
             ax = expression.ToCharArray();
