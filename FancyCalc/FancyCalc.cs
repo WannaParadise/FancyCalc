@@ -31,34 +31,29 @@ namespace FancyCalc
         //generic calc method. usage: "10 + 20"  => result 30
         static double? Culculate(string expression)
         {
+            if (expression == null)
+            {
+                throw new ArgumentNullException();
+            }
 
-            if (expression == "")
+            if (expression.Length == 0)
             {
 
-                return null;
+                throw new ArgumentException();
             }
             else
             {
-                expression = expression.Replace("  ", string.Empty);
-                expression = expression.Trim().Replace(" ", string.Empty);
+                expression = expression.Replace(" ", string.Empty);
                 double[] a = new double[expression.Length];
-
-            expression = expression.Replace("  ", string.Empty);
-            expression = expression.Trim().Replace(" ", string.Empty);
-            double[] a = new double[expression.Length];
-
-                double[] b = new double[expression.Length];
-                char[] ax = new char[expression.Length];
-                ax = expression.ToCharArray();
+                List<double> b = new List<double>();
+                char[] ax = expression.ToCharArray();
                 string oper = "";
                 int operaind = 5;
                 for (int i = 0; i < expression.Length; i++)
-
                 {
                     if (char.IsDigit(ax[i]))
                     {
                         a[i] = (int)Char.GetNumericValue(ax[i]);
-
                     }
                     else
                     {
@@ -72,7 +67,7 @@ namespace FancyCalc
                 {
                     if (char.IsDigit(ax[i]))
                     {
-                        b[i] = (int)Char.GetNumericValue(ax[i]);
+                        b.Add( (int)Char.GetNumericValue(ax[i]));
 
                     }
                     else
@@ -80,10 +75,10 @@ namespace FancyCalc
                         break;
                     }
                 }
-
+                
                 Array.Resize(ref a, operaind);
                 string a1 = string.Join("", a);
-                string b1 = string.Join("", b);
+                string b1 = string.Join("", b.ToArray());
                 double first = Convert.ToDouble(a1);
                 double second = Convert.ToDouble(b1);
                 double finish = 0;
@@ -103,8 +98,6 @@ namespace FancyCalc
                         break;
                 }
                 return finish;
-
-
             }
         }
     }
